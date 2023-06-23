@@ -22,16 +22,15 @@ export default function SearchBar() {
     return (
         <div>
             <div>
-                <ul>
+                <ul className="sort-by-list">
                     {renderSortOptions()}
                 </ul>
             </div>
-            <form>
+            <div className="search-input">
                 <input type="text" placeholder="Search Businesses"></input>
                 <input type="text" placeholder="Where?"></input>
-                <input type="submit" value="Let's Go"></input>
-            </form>
-
+                <input type="submit" className="search-button" value="Let's Go"></input>
+            </div>
         </div>
     );
 }

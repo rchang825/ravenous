@@ -1,28 +1,38 @@
 import React from "react";
 
 //creates businesses with appropriate attributes
-export default function Business() {
-    const sample = {
-        imageSrc: 'https://content.codecademy.com/programs/react/ravenous/pizza.jpg',
-        name: 'MarginOtto Pizzeria',
-        address: '1010 Paddington Way',
-        city: 'Flavortown',
-        state: 'NY',
-        zipCode: '10101',
-        category: 'Italian',
-        rating: 4.5,
-        reviewCount: 90
-    };
+export default function Business(props) {
+    // const sample = {
+    //     imageSrc: 'https://content.codecademy.com/programs/react/ravenous/pizza.jpg',
+    //     name: 'MarginOtto Pizzeria',
+    //     address: '1010 Padding Way',
+    //     city: 'Flavortown',
+    //     state: 'NY',
+    //     zipCode: '10101',
+    //     category: 'Italian',
+    //     rating: 4.5,
+    //     reviewCount: 90
+    // };
     return (
         <div>
-            <img src= {sample.imageSrc}></img>
-            <h3>{sample.name}</h3>
-            <p>{sample.address}</p>
-            <p>{sample.city}</p>
-            <p>{sample.state} {sample.zipCode}</p>
-            <h5>{sample.category}</h5>
-            <p>{sample.rating} stars</p>
-            <p>{sample.reviewCount}</p>
+            <div className="business-img-container">
+                <img src= {props.business.imageSrc} className="business-img"></img>
+            </div>
+            <div className="info">
+                <h3 className="restaurant-name">{props.business.name}</h3>
+                <div className="details-format">
+                    <p className="address">
+                        {props.business.address} <br></br>
+                        {props.business.city} <br></br>
+                        {props.business.state} {props.business.zipCode}
+                    </p>
+                    <p className="misc-details">
+                        {props.business.category} <br></br>
+                        {props.business.rating} stars <br></br>
+                        {props.business.reviewCount} reviews
+                    </p>                      
+                </div>
+            </div>
         </div>
     );
 }

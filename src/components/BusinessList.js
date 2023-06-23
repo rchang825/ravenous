@@ -2,15 +2,10 @@ import React from "react";
 import Business from "./Business";
 
 //displays businesses
-export default function BusinessList() {
+export default function BusinessList(props) {
     return (
-        <div>
-            <Business />
-            <Business />
-            <Business />
-            <Business />
-            <Business />
-            <Business />
+        <div className="businesses grid-container">
+            {props.businesses.map(b =>  <Business business={b} />)}
         </div>
     );
 }
