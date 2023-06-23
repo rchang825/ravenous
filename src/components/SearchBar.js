@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 //displays a search bar that allows sorting
 export default function SearchBar() {
@@ -13,11 +13,36 @@ export default function SearchBar() {
     //Set the key attribute of each list item to the value of the corresponding key, 
     //and set the content of the list item to the value of the corresponding value.
     const renderSortOptions = () => {
-        return Object.keys(sortOptions).map((sortOption) => {
-            let sortOptionValue = sortOptions[sortOption];
-            return <li key={sortOptionValue}>{sortOption}</li>;
+        return Object.keys(sortOptions).map((option) => {
+            let sortOptionValue = sortOptions[option];
+            //console.log("sortOptionValue", sortOptionValue, "sortOption state", sortOption);
+            return <li key={sortOptionValue} onClick={() => {clickHandler(sortOptionValue)}} style={sortOptionValue === sortOption ? {"font-weight": "bold"} : null}>
+                {option}
+                </li>;
           });
     };
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [location, setLocation] = useState("");
+    const [sortOption, setSortOption] = useState("");
+
+    const clickHandler = (sortOptionValue) => {
+        setSortOption(sortOptionValue);
+        //console.log("sortOption is", sortOptionValue);
+    };
+
+    const inputChangeHandler = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const locationChangeHandler = (event) => {
+        setLocation(event.target.value);
+    };
+
+    const submitClickHandler = (event) => {
+        event.preventDefault();
+        console.log("Searching Yelp with ", searchTerm, ",", location, ",", sortOption);
+    }
 
     return (
         <div>
@@ -27,9 +52,9 @@ export default function SearchBar() {
                 </ul>
             </div>
             <div className="search-input">
-                <input type="text" placeholder="Search Businesses"></input>
-                <input type="text" placeholder="Where?"></input>
-                <input type="submit" className="search-button" value="Let's Go"></input>
+                <input type="text" placeholder="Search Businesses" onChange={inputChangeHandler} value={searchTerm}></input>
+                <input type="text" placeholder="Where?" onChange={locationChangeHandler} value={location}></input>
+                <input type="submit" className="search-button" onClick={submitClickHandler} value="Let's Go"></input>
             </div>
         </div>
     );
